@@ -24,7 +24,7 @@ public class SchedulerAdapter {
      */
     private boolean isFoliaServer() {
         try {
-            Class.forName("io.papermc.paper.threadedregions.scheduler.GlobalRegionScheduler");
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
             return true; // Folia detected
         } catch (ClassNotFoundException e) {
             return false;
