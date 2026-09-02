@@ -19,19 +19,19 @@ public class PermissionValidator {
         String defaultPerm = ctx.configHandler.config.getString("config.format.perms");
 
         if (!sender.hasPermission("commandpanel.panel." + panel.getConfig().getString("perm"))) {
-            sender.sendMessage(ctx.text.colour(ctx.tag + (permMessage != null ? permMessage : defaultPerm)));
+            if (sender instanceof Player) sender.sendMessage(ctx.text.colour(ctx.tag + (permMessage != null ? permMessage : defaultPerm)));
             return false;
         }
 
         if (sender.hasPermission("commandpanel.other") || !openForOtherUser) {
             if (!isPanelWorldEnabled(p, panel.getConfig())) {
-                sender.sendMessage(ctx.text.colour(ctx.tag + (permMessage != null ? permMessage : defaultPerm)));
+                if (sender instanceof Player) sender.sendMessage(ctx.text.colour(ctx.tag + (permMessage != null ? permMessage : defaultPerm)));
                 return false;
             }
             return true;
         }
 
-        sender.sendMessage(ctx.text.colour(ctx.tag + (permMessage != null ? permMessage : defaultPerm)));
+        if (sender instanceof Player) sender.sendMessage(ctx.text.colour(ctx.tag + (permMessage != null ? permMessage : defaultPerm)));
         return false;
     }
 

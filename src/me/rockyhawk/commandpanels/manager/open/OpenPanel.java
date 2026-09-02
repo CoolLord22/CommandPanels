@@ -8,6 +8,7 @@ import me.rockyhawk.commandpanels.manager.session.PanelPosition;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -70,7 +71,7 @@ public class OpenPanel {
             commandExecutor.executeOpenCommands(panel, position, p);
             soundPlayer.playOpenSound(panel, p);
 
-            if (openForOtherUser) {
+            if (openForOtherUser && !(sender instanceof ConsoleCommandSender)) {
                 sender.sendMessage(ctx.text.colour(ctx.tag + ChatColor.GREEN + "Panel Opened for " + p.getDisplayName()));
             }
         } catch (Exception r) {
