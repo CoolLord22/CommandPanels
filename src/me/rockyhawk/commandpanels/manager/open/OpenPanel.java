@@ -43,7 +43,10 @@ public class OpenPanel {
 
         boolean openForOtherUser = !(sender instanceof Player && sender == p);
 
-        if (!permission.hasPermission(sender, p, panel, position, openForOtherUser)) return;
+        if (!permission.hasPermission(sender, p, panel, position, openForOtherUser)) {
+            p.closeInventory();
+            return;
+        }
 
         // Check open requirements before allowing panel to open
         if (!requirementsValidator.canOpenPanel(panel, p)) {
